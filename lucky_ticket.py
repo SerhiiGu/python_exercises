@@ -14,6 +14,11 @@
 # 001099
 #
 # Бажано щоб функція могла підтримувати розпаралелювання (приймати на вхід початок і кінець діапазону для обрахунку)
+#################################################
+
+from datetime import datetime
+from threading import Thread
+
 
 def lucky_ticket(start, end):
     count = 0
@@ -24,8 +29,27 @@ def lucky_ticket(start, end):
         if lst[0]+lst[1]+lst[2] == lst[3]+lst[4]+lst[5]:
             # print(f'{number} is a lucky ticket')
             count += 1
-    print(f'Number of lucky tickets: {count}')
+    print(f'Number of lucky tickets in range {start}-{end}: {count}')
+    global data
+    data = data + count
+    return count
 
 
 if __name__ == '__main__':
-    lucky_ticket(1, 999999)
+    data = 0
+    timestart = datetime.now()
+    count = lucky_ticket(1, 999999)
+    timeend = datetime.now()
+    print(f'Number of lucky tickets: {count}. \t Time in single thread: {timeend - timestart}')
+
+    data = 0
+    timestart = datetime.now()
+    t1 = Thread(target=lucky_ticket, args=(1, 500000))
+    t2 = Thread(target=lucky_ticket, args=(500001, 999999))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+    timeend = datetime.now()
+    print(f'Number of lucky tickets: {data}. \t Time in two threads: {timeend - timestart}')
+
