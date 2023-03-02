@@ -1,8 +1,8 @@
 
 
-def lucky_ticket():
+def lucky_ticket(start, end):
     count = 0
-    for number in range(1, 999999):
+    for number in range(start, end):
         lst = [int(x) for x in str(number)]
         while len(lst) < 6:
             lst.append(0)
@@ -13,4 +13,4 @@ def lucky_ticket():
 
 
 if __name__ == '__main__':
-    lucky_ticket()
+    lucky_ticket(1, 999999)
