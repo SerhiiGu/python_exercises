@@ -23,12 +23,10 @@ from threading import Thread
 def lucky_ticket(start, end):
     count = 0
     for number in range(start, end):
-        # digit6 = "{:06d}".format(number)
-        lst = [int(x) for x in str(number)]
-        while len(lst) < 6:
-            lst.insert(0, 0)
+        digit6 = "{:06d}".format(number)
+        lst = [int(x) for x in digit6]
         if lst[0]+lst[1]+lst[2] == lst[3]+lst[4]+lst[5]:
-            print(f'{number} is a lucky ticket')
+            # print(f'{number} is a lucky ticket')
             count += 1
     print(f'Number of lucky tickets in range {start}-{end}: {count}')
     global data
