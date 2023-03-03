@@ -23,11 +23,12 @@ from threading import Thread
 def lucky_ticket(start, end):
     count = 0
     for number in range(start, end):
+        # digit6 = "{:06d}".format(number)
         lst = [int(x) for x in str(number)]
         while len(lst) < 6:
-            lst.append(0)
+            lst.insert(0, 0)
         if lst[0]+lst[1]+lst[2] == lst[3]+lst[4]+lst[5]:
-            # print(f'{number} is a lucky ticket')
+            print(f'{number} is a lucky ticket')
             count += 1
     print(f'Number of lucky tickets in range {start}-{end}: {count}')
     global data
@@ -42,14 +43,14 @@ if __name__ == '__main__':
     timeend = datetime.now()
     print(f'Number of lucky tickets: {count}. \t Time in single thread: {timeend - timestart}')
 
-    data = 0
-    timestart = datetime.now()
-    t1 = Thread(target=lucky_ticket, args=(1, 500000))
-    t2 = Thread(target=lucky_ticket, args=(500001, 999999))
-    t1.start()
-    t2.start()
-    t1.join()
-    t2.join()
-    timeend = datetime.now()
-    print(f'Number of lucky tickets: {data}. \t Time in two threads: {timeend - timestart}')
+    # data = 0
+    # timestart = datetime.now()
+    # t1 = Thread(target=lucky_ticket, args=(1, 500000))
+    # t2 = Thread(target=lucky_ticket, args=(500001, 999999))
+    # t1.start()
+    # t2.start()
+    # t1.join()
+    # t2.join()
+    # timeend = datetime.now()
+    # print(f'Number of lucky tickets: {data}. \t Time in two threads: {timeend - timestart}')
 
