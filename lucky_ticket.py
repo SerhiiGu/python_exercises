@@ -41,14 +41,14 @@ if __name__ == '__main__':
     timeend = datetime.now()
     print(f'Number of lucky tickets: {count}. \t Time in single thread: {timeend - timestart}')
 
-    # data = 0
-    # timestart = datetime.now()
-    # t1 = Thread(target=lucky_ticket, args=(1, 500000))
-    # t2 = Thread(target=lucky_ticket, args=(500001, 999999))
-    # t1.start()
-    # t2.start()
-    # t1.join()
-    # t2.join()
-    # timeend = datetime.now()
-    # print(f'Number of lucky tickets: {data}. \t Time in two threads: {timeend - timestart}')
+    data = 0
+    timestart = datetime.now()
+    t1 = Thread(target=lucky_ticket, args=(1, 500000))
+    t2 = Thread(target=lucky_ticket, args=(500001, 999999))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+    timeend = datetime.now()
+    print(f'Number of lucky tickets: {data}. \t Time in two threads: {timeend - timestart}')
 
